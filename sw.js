@@ -1,9 +1,9 @@
 /* Guarda o sistema no aparelho para abrir e lançar registros sem internet.
    Os dados vão para o servidor pela fila do próprio app quando a conexão volta. */
-const VERSAO = 'msa-v69';
+const VERSAO = 'msa-v81';
 const ARQUIVOS = ['./', 'index.html', 'css/app.css', 'js/config.js', 'js/tudo.js',
   'js/vendor/supabase-2.117.2.js', 'js/vendor/qrcode-generator-2.0.4.js', 'assets/icon-192.png', 'manifest.webmanifest',
-  'assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2', 'assets/fontes/cormorant-garamond-latin-700-normal.woff2'];
+  'assets/fontes/manrope-marca-700.woff2'];
 const EXTERNOS = [];   // desde a v4 as fontes ficam no próprio sistema
 // cada versão nova baixa tudo de novo, sem passar pelo cache do navegador (senão podia guardar arquivo velho)
 self.addEventListener('install', e => e.waitUntil(caches.open(VERSAO)

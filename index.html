@@ -7,12 +7,13 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' https://mfhuowckqcjlbwfpinow.supabase.co wss://mfhuowckqcjlbwfpinow.supabase.co https://viacep.com.br; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="robots" content="noindex">
 <title>Manejo Sanitário · DIGUAE</title>
-<meta name="theme-color" content="#17452F">
+<meta name="theme-color" content="#F3EFE7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121620" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="assets/icon-192.png">
 <link rel="apple-touch-icon" href="assets/icon-192.png">
 <link rel="stylesheet" href="css/app.css">
-<link rel="preload" href="assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fontes/manrope-marca-700.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
 <!-- barra de acessibilidade (eMAG 3.1): primeiro item do Tab, guardada até receber o foco do teclado -->
@@ -43,16 +44,17 @@
    <ul class="ent-set" aria-label="Setores do projeto"><li><i aria-hidden="true">BOV</i><span>Bovinos de leite</span></li><li><i aria-hidden="true">CAP</i><span>Caprinos</span></li><li><i aria-hidden="true">OVI</i><span>Ovinos</span></li><li><i aria-hidden="true">SUI</i><span>Suínos</span></li><li><i aria-hidden="true">AVI</i><span>Aves</span></li><li><i aria-hidden="true">API</i><span>Abelhas</span></li></ul>
   </div>
   <div class="authbox">
-   <div class="ac-cab"><span class="eyebrow">Área de acesso</span><h2 class="ent-t">Que bom ver você</h2><p class="ent-p" id="authsub">Entre com o e-mail cadastrado pela coordenação.</p></div>
+   <div class="ac-cab"><span class="eyebrow">Área de acesso</span><h2 class="ent-t">Que bom ver você</h2><p class="ent-p" id="authsub">Entre com o e-mail cadastrado.</p></div>
    <div id="authcorpo"></div>
    <button type="button" id="ap_entrada" class="ent-ap" data-aparencia aria-label="Aparência da tela: modo sol, claro ou escuro"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><span>Aparência</span></button>
    <button type="button" class="ent-ap ent-ct" data-contraste aria-pressed="false" aria-label="Alto contraste" title="Alto contraste"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
   </div>
  </div>
  <footer class="pe pe-ent" id="rodape-ent" tabindex="-1" role="contentinfo"><div class="wrap">
-  <div class="pe-m"><img src="assets/icon-192.png" alt="" width="36" height="36"><div><b>Manejo Sanitário</b><span>Formação, pesquisa aplicada e extensão rural</span></div></div>
-  <div class="pe-i"><span>IFRN Campus Apodi · DIGUAE · FUNCERN</span><span>Processo 23136.001756.2026-83</span></div>
-  <div class="pe-a"><p>Dados protegidos pela LGPD (Lei nº 13.709/2018), usados só para o projeto. <span class="pe-acs"><button type="button" class="pe-ac" data-acessibilidade>Acessibilidade</button><button type="button" class="pe-ac" data-contraste aria-pressed="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>Alto contraste</button></span></p></div>
+  <div class="pe-i"><span>IFRN Campus Apodi · DIGUAE · FUNCERN · Processo 23136.001756.2026-83</span>
+  <p>Dados protegidos pela LGPD (Lei nº 13.709/2018), usados só para o projeto. <span class="pe-acs"><button type="button" class="pe-ac" data-acessibilidade>Acessibilidade</button><button type="button" class="pe-ac" data-contraste aria-pressed="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>Alto contraste</button></span></p></div>
+ <!-- marcas oficiais (IFRN, DIGUAE, FUNCERN…): entram aqui só imagens da pasta marcas/, num fundo branco com ~32 px de altura -->
+ <div class="pe-marcas" data-marcas role="group" aria-label="Marcas oficiais"></div>
  </div></footer>
 </section>
 <section id="pub" hidden></section>
@@ -63,7 +65,7 @@
   <div class="who"><span id="net" class="chip f" hidden>sem internet · guardando neste aparelho</span>
    <button type="button" class="tb" data-aparencia aria-label="Aparência da tela: modo sol, claro ou escuro" title="Aparência da tela (modo sol)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
    <button type="button" class="tb tb-ct" data-contraste aria-pressed="false" aria-label="Alto contraste" title="Alto contraste"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
-   <button type="button" class="tb" data-ajuda aria-label="Ajuda" title="Ajuda">?</button>
+   <button type="button" class="tb" data-ajuda aria-label="Ajuda" title="Ajuda"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 16v.01"/><path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"/></svg></button>
    <button type="button" class="tb-eu" data-meus title="Meus dados"><span class="tb-av" id="quem-av" aria-hidden="true"></span>
    <span id="quem" class="tb-quem"><b id="quem-nome"></b><span id="quem-papel"></span></span></button>
    <button type="button" class="tb" data-sair aria-label="Sair do sistema" title="Sair do sistema"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M4 12h11"/><path d="M11 8l4 4-4 4"/></svg></button></div>
@@ -71,10 +73,11 @@
 <nav id="menu" aria-label="Seções do sistema"><div class="wrap" id="tabs"></div><div class="wrap nav-m" id="abas-m"></div></nav>
 <main id="conteudo"><div class="wrap" id="view"></div></main>
 <footer class="pe" id="rodape"><div class="wrap">
- <div class="pe-m"><img src="assets/icon-192.png" alt="" width="44" height="44"><div><b>Manejo Sanitário</b><span>Formação, pesquisa aplicada e extensão rural</span></div></div>
- <div class="pe-i"><span>IFRN Campus Apodi · DIGUAE · FUNCERN</span><span>Recursos próprios do IFRN · Processo 23136.001756.2026-83</span><span class="pe-v" hidden></span></div>
- <div class="pe-a"><button type="button" class="pe-b" data-ajuda><i>?</i>Ajuda desta página</button><button type="button" class="pe-b" data-relatar><i>!</i>Relatar problema</button>
+ <div class="pe-a"><button type="button" class="b pe-b" data-ajuda><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 16v.01"/><path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"/></svg>Ajuda desta página</button><button type="button" class="b pe-b" data-relatar><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"/><path d="M12 8v3"/><path d="M12 14v.01"/></svg>Relatar problema</button></div>
+ <div class="pe-i"><span>IFRN Campus Apodi · DIGUAE · FUNCERN · Recursos próprios do IFRN · Processo 23136.001756.2026-83</span><span class="pe-v" hidden></span>
   <p>Dados protegidos pela LGPD (Lei nº 13.709/2018), usados só para o projeto. <span class="pe-acs"><button type="button" class="pe-ac" data-acessibilidade>Acessibilidade</button><button type="button" class="pe-ac" data-contraste aria-pressed="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>Alto contraste</button></span></p></div>
+ <!-- marcas oficiais (IFRN, DIGUAE, FUNCERN…): entram aqui só imagens da pasta marcas/, num fundo branco com ~32 px de altura -->
+ <div class="pe-marcas" data-marcas role="group" aria-label="Marcas oficiais"></div>
 </div></footer>
 </div>
 <div class="carregando" id="carregando" role="status">
