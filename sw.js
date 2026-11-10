@@ -1,6 +1,6 @@
 /* Guarda o sistema no aparelho para abrir e lançar registros sem internet.
    Os dados vão para o servidor pela fila do próprio app quando a conexão volta. */
-const VERSAO = 'msa-v105';
+const VERSAO = 'msa-v107';
 const ARQUIVOS = ['./', 'index.html', 'css/app.css', 'js/config.js', 'js/tudo.js',
   'js/vendor/supabase-2.117.2.js', 'js/vendor/qrcode-generator-2.0.4.js', 'assets/icon-192.png', 'assets/escudo.svg', 'assets/mapa-rn.json', 'manifest.webmanifest',
   'assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2', 'assets/fontes/manrope-marca-700.woff2'];
@@ -24,7 +24,12 @@ self.addEventListener('fetch', e => {
   if (proprio && u.pathname.includes('/manuais/')) return;   // manuais em PDF: sempre da internet, não ocupam o aparelho
   // a página: internet com prazo de 3 s (para pegar versão nova); sem sinal, abre a guardada
   if (e.request.mode === 'navigate') {
-    e.respondWith(comPrazo(e.request, 3000).catch(() => caches.match('index.html')));
+    /* a simulação (simulacao.html) nunca cai na página do sistema real: sem sinal, avisa (antes abria a index.html guardada no
+       endereço da simulação, e a pessoa podia entrar no sistema de verdade achando que treinava; revisão de 10/11/2026) */
+    const sim = /\/simulacao\.html$/.test(u.pathname);
+    e.respondWith(comPrazo(e.request, sim ? 8000 : 3000).catch(() => sim
+      ? new Response('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Simulação sem internet</title><body style="font:16px system-ui;padding:24px;max-width:36em;margin:auto"><h1>A simulação precisa de internet</h1><p>A página de treino não fica guardada no aparelho. Tente de novo quando houver sinal.</p><p><a href="./">Abrir o sistema</a></p>', { headers: { 'Content-Type': 'text/html; charset=utf-8' } })
+      : caches.match('index.html')));
     return;
   }
   // arquivos do sistema, biblioteca e fontes: abre do aparelho na hora; o que não estiver guardado vem da internet
