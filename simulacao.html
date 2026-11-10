@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- Política de conteúdo: só roda código deste endereço e só conversa com o Supabase (segunda barreira contra código injetado). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' https://viacep.com.br; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="robots" content="noindex, nofollow">
+<title>Simulação · Manejo Sanitário</title>
+<meta name="theme-color" content="#1E4D36" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#2F6B4F" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="stylesheet" href="css/app.css">
+<link rel="preload" href="assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fontes/manrope-marca-700.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+<!-- barra de acessibilidade (eMAG 3.1): primeiro item do Tab, guardada até receber o foco do teclado -->
+<div class="barra-acess" role="navigation" aria-label="Atalhos de acessibilidade"><div class="ba-in">
+ <ul><li><button type="button" data-atalho="conteudo" accesskey="1" aria-keyshortcuts="Alt+1">Ir para o conteúdo <kbd>1</kbd></button></li>
+  <li data-so-menu><button type="button" data-atalho="menu" accesskey="2" aria-keyshortcuts="Alt+2">Ir para o menu <kbd>2</kbd></button></li>
+  <li><button type="button" data-atalho="rodape" accesskey="4" aria-keyshortcuts="Alt+4">Ir para o rodapé <kbd>4</kbd></button></li></ul>
+ <ul><li><button type="button" data-acessibilidade>Acessibilidade</button></li><li><button type="button" class="ba-contraste" data-contraste aria-pressed="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>Alto contraste</button></li></ul>
+</div></div>
+<section id="auth" hidden>
+ <!-- fundo: linhas de pasto em nível, quase invisíveis (decoração; não é lida por leitor de tela) -->
+ <svg class="ent-fundo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <g fill="none" stroke="currentColor" stroke-width="1.5">
+   <path d="M-80 640C180 540 420 720 720 610s520-90 880 20"/><path d="M-80 690C190 590 430 770 730 660s520-90 870 20"/><path d="M-80 740C200 640 440 820 740 710s520-90 860 20"/>
+   <path d="M-80 790C210 690 450 870 750 760s520-90 850 20"/><path d="M-80 840C220 740 460 920 760 810s520-90 840 20"/>
+  </g>
+  <path class="folha" d="M1250 70c60 40 120 52 160 52v104c0 102-66 168-160 204-94-36-160-102-160-204V122c40 0 100-12 160-52z"/>
+ </svg>
+ <div class="ent">
+  <div class="ent-topo">
+   <div class="ent-marca"><img src="assets/icon-192.png" alt="" width="64" height="64"><div><b>Manejo Sanitário</b><span>Setores de produção animal · DIGUAE · IFRN Campus Apodi</span></div></div>
+   <h1 class="ent-h">Rebanho saudável<br><em>também ensina.</em></h1>
+   <p class="ent-s">Protocolos, calendário, tratamentos e pesquisa no mesmo lugar.</p>
+  </div>
+  <div class="ent-base">
+   <p class="ent-d">Os seis setores da fazenda-escola, do diagnóstico sanitário à formação dos estudantes e às oficinas com agricultores familiares do entorno de Apodi.</p>
+   <ul class="ent-set" aria-label="Setores do projeto"><li><i aria-hidden="true">BOV</i><span>Bovinos de leite</span></li><li><i aria-hidden="true">CAP</i><span>Caprinos</span></li><li><i aria-hidden="true">OVI</i><span>Ovinos</span></li><li><i aria-hidden="true">SUI</i><span>Suínos</span></li><li><i aria-hidden="true">AVI</i><span>Aves</span></li><li><i aria-hidden="true">API</i><span>Abelhas</span></li></ul>
+  </div>
+  <div class="authbox">
+   <!-- Aparência e Alto contraste antes do formulário: no Tab vêm logo depois da barra de atalhos, na ordem em que aparecem (no alto do cartão) -->
+   <button type="button" id="ap_entrada" class="ent-ap" data-aparencia aria-label="Aparência da tela: modo sol, claro ou escuro"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><span>Aparência</span></button>
+   <button type="button" class="ent-ap ent-ct" data-contraste aria-pressed="false" aria-label="Alto contraste" title="Alto contraste"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+   <div class="ac-cab"><span class="eyebrow">Área de acesso</span><h2 class="ent-t">Que bom ver você</h2><p class="ent-p" id="authsub">Entre com o e-mail cadastrado.</p></div>
+   <div id="authcorpo"></div>
+  </div>
+ </div>
+ <footer class="pe pe-un" id="rodape-ent" tabindex="-1" role="contentinfo"><div class="wrap">
+  <div class="pe-m"><img src="assets/escudo.svg" alt="" width="36" height="40"><div><b>Manejo Sanitário</b><span>Setores de produção animal do IFRN Campus Apodi</span></div></div>
+  <div class="pe-i"><span>IFRN Campus Apodi · DIGUAE · FUNCERN</span><span>Recursos próprios do IFRN · Processo <span class="pe-nq">23136.001756.2026-83</span></span></div>
+  <p class="pe-l">Dados protegidos pela LGPD (Lei nº 13.709/2018), usados só para o projeto. <span class="pe-acs"><button type="button" class="pe-ac" data-acessibilidade>Acessibilidade</button><button type="button" class="pe-ac" data-contraste aria-pressed="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>Alto contraste</button></span></p>
+ <!-- marcas oficiais (IFRN, DIGUAE, FUNCERN…): entram aqui só imagens da pasta marcas/, num fundo branco com ~32 px de altura -->
+ <div class="pe-marcas" data-marcas role="group" aria-label="Marcas oficiais"></div>
+ </div></footer>
+</section>
+<section id="pub" hidden></section>
+<div id="app" hidden>
+<header class="top"><div class="wrap">
+  <div class="tb-marca"><img class="tb-logo" src="assets/escudo.svg" alt="" width="39" height="44"><div><p class="marca-nome">Manejo Sanitário</p>
+  <div class="sub">Setores de produção animal · DIGUAE · IFRN Campus Apodi · Processo 23136.001756.2026-83</div></div></div>
+  <div id="espaco" class="esp-sw" hidden></div>
+  <div class="who"><span id="net" class="chip f" hidden>sem internet · guardando neste aparelho</span>
+   <button type="button" class="tb" data-aparencia aria-label="Aparência da tela: modo sol, claro ou escuro" title="Aparência da tela (modo sol)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+   <button type="button" class="tb tb-ct" data-contraste aria-pressed="false" aria-label="Alto contraste" title="Alto contraste"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+   <button type="button" class="tb" data-ajuda aria-label="Ajuda" title="Ajuda"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 16v.01"/><path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"/></svg></button>
+   <button type="button" class="tb-eu" data-meus title="Meus dados"><span class="tb-av" id="quem-av" aria-hidden="true"></span>
+   <span id="quem" class="tb-quem"><b id="quem-nome"></b><span id="quem-papel"></span></span></button>
+   <button type="button" class="tb" data-sair aria-label="Sair do sistema" title="Sair do sistema"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M4 12h11"/><path d="M11 8l4 4-4 4"/></svg></button></div>
+</div></header>
+<nav id="menu" aria-label="Seções do sistema"><div class="wrap" id="tabs"></div><div class="esp-sw esp-m" id="espaco-m" hidden></div><div class="wrap nav-m" id="abas-m"></div></nav>
+<main id="conteudo"><div class="wrap" id="view"></div></main>
+<footer class="pe pe-un" id="rodape" tabindex="-1"><div class="wrap">
+ <div class="pe-m"><img src="assets/escudo.svg" alt="" width="36" height="40"><div><b>Manejo Sanitário</b><span>Setores de produção animal do IFRN Campus Apodi</span></div></div>
+ <div class="pe-bs"><button type="button" class="b pe-b" data-ajuda><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 16v.01"/><path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"/></svg>Ajuda desta página</button><button type="button" class="b pe-b" data-relatar><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"/><path d="M12 8v3"/><path d="M12 14v.01"/></svg>Relatar problema</button></div>
+ <div class="pe-i"><span>IFRN Campus Apodi · DIGUAE · FUNCERN</span><span>Recursos próprios do IFRN · Processo <span class="pe-nq">23136.001756.2026-83</span></span></div>
+ <p class="pe-l">Dados protegidos pela LGPD (Lei nº 13.709/2018), usados só para o projeto. <span class="pe-acs"><button type="button" class="pe-ac" data-acessibilidade>Acessibilidade</button><button type="button" class="pe-ac" data-contraste aria-pressed="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>Alto contraste</button></span><span class="pe-v" hidden></span></p>
+ <!-- marcas oficiais (IFRN, DIGUAE, FUNCERN…): entram aqui só imagens da pasta marcas/, num fundo branco com ~32 px de altura -->
+ <div class="pe-marcas" data-marcas role="group" aria-label="Marcas oficiais"></div>
+</div></footer>
+</div>
+<div class="carregando" id="carregando" role="status">
+ <!-- linha de batimento passando por uma cruz: sanidade animal -->
+ <svg class="cg" viewBox="0 0 120 60" width="120" height="60" aria-hidden="true" focusable="false"><path class="cg-cruz" d="M52 14h16v12h12v16H68v12H52V42H40V26h12z" opacity=".18"/><path class="cg-linha" d="M4 34h28l7-14 9 26 8-34 8 30 6-8h46"/></svg>
+ <span id="carregando-txt">Abrindo o sistema…</span>
+</div>
+<dialog id="dlg"><form id="frm" novalidate></form></dialog>
+<noscript><p class="carregando">Este sistema precisa de JavaScript ligado no navegador.</p></noscript>
+<!-- SIMULAÇÃO: sem banco, dados fictícios gerados na hora (js/simulacao.js, só esta página baixa). GERADA por ferramentas/montar.js a partir da index.html: não edite aqui. -->
+<script src="js/simulacao.js"></script>
+<!-- todo o sistema num arquivo só (montado por ferramentas/montar.js) -->
+<script src="js/tudo.js"></script>
+</body>
+</html>
