@@ -1,6 +1,17 @@
+<!-- Isotipo do Manejo Sanitário (v85, 10/11/2026): escudo de cal (proteção, sanidade) com a cabeça de um bovino em anil (os setores de produção animal) e o selo verde de saúde. Cores da paleta Anil e Cal. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
- <rect width="512" height="512" rx="112" fill="#1B3A26"/>
- <path d="M256 92c58 40 116 52 156 52v104c0 102-66 168-156 204-90-36-156-102-156-204V144c40 0 98-12 156-52z" fill="#2E6B3F" stroke="#F3F7F2" stroke-width="20" stroke-linejoin="round"/>
- <path d="M226 190h60v58h58v60h-58v58h-60v-58h-58v-60h58z" fill="#F3F7F2"/>
- <path d="M150 400c40-14 72-12 106 0s66 14 106 0" fill="none" stroke="#E3AA4E" stroke-width="16" stroke-linecap="round"/>
+ <rect width="512" height="512" rx="112" fill="#22345A"/>
+ <path d="M256 70c62 38 122 50 166 50v118c0 112-72 180-166 214-94-34-166-102-166-214V120c44 0 104-12 166-50z" fill="#F3EFE7"/>
+ <g fill="#22345A">
+  <path d="M168 168c-6 34 14 56 48 58l-6-20c-20-2-32-14-30-38z"/>
+  <path d="M344 168c6 34-14 56-48 58l6-20c20-2 32-14 30-38z"/>
+  <path d="M150 238c18-14 44-16 66-8l-4 26c-22 4-46-2-62-18z"/>
+  <path d="M362 238c-18-14-44-16-66-8l4 26c22 4 46-2 62-18z"/>
+  <path d="M212 214h88c14 0 22 12 20 26l-14 96c-3 22-22 38-50 38s-47-16-50-38l-14-96c-2-14 6-26 20-26z"/>
+ </g>
+ <ellipse cx="256" cy="344" rx="34" ry="22" fill="#E6E0D3"/>
+ <circle cx="242" cy="344" r="5" fill="#22345A"/><circle cx="270" cy="344" r="5" fill="#22345A"/>
+ <circle cx="234" cy="268" r="9" fill="#F3EFE7"/><circle cx="278" cy="268" r="9" fill="#F3EFE7"/>
+ <circle cx="356" cy="372" r="58" fill="#3F6B34" stroke="#F3EFE7" stroke-width="14"/>
+ <path d="M342 340h28v18h18v28h-18v18h-28v-18h-18v-28h18z" fill="#FFFFFF"/>
 </svg>
