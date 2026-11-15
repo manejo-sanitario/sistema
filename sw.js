@@ -1,6 +1,6 @@
 /* Guarda o sistema no aparelho para abrir e lançar registros sem internet.
    Os dados vão para o servidor pela fila do próprio app quando a conexão volta. */
-const VERSAO = 'msa-v145';
+const VERSAO = 'msa-v146';
 const ARQUIVOS = ['./', 'index.html', 'css/app.css', 'js/config.js', 'js/tudo.js',
   'js/vendor/supabase-2.117.2.js', 'js/vendor/qrcode-generator-2.0.4.js', 'assets/icon-192.png', 'assets/escudo.svg', 'assets/icone.svg', 'assets/mapa-rn.json', 'manifest.webmanifest',
   'assets/fontes/lexend-latin-wght-normal.woff2', 'assets/fontes/manrope-marca-700.woff2',
@@ -43,7 +43,7 @@ self.addEventListener('fetch', e => {
 
 /* v137 (verificação completa de 14/11/2026): o toque no aviso abre a seção do assunto (antes, sempre a primeira tela). As etiquetas
    (tag) são as que o banco manda em avisar() (05_avisos_e_fotos.sql); etiqueta sem seção abre o sistema onde estava. */
-const ABA_DO_AVISO = { conferir: 'procedimentos', aval: 'equipe', 'aval-ok': 'equipe', 'bolsa-lembrete': 'equipe', famacha: 'pesquisa', 'resumo-dia': 'calendario', 'gestao-aprovar': 'gaprovar', 'gestao-aprovado': 'gacoes', 'gestao-devolvido': 'gacoes' };
+const ABA_DO_AVISO = { conferir: 'procedimentos', aval: 'equipe', 'aval-ok': 'equipe', 'aval-dev': 'equipe', 'bolsa-lembrete': 'equipe', famacha: 'pesquisa', 'resumo-dia': 'calendario', 'gestao-aprovar': 'gaprovar', 'gestao-aprovado': 'gacoes', 'gestao-devolvido': 'gacoes' };
 const abaDoAviso = tag => ABA_DO_AVISO[String(tag || '')] || '';
 /* 05/11/2026: avisos no celular. O servidor manda só { titulo, corpo, tag } (sem nome de animal nem de pessoa). Tocar no aviso abre o sistema. */
 self.addEventListener('push', e => {
