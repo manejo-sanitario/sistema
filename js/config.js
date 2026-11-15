@@ -8,5 +8,5 @@ SQC.CONFIG = {
   supabaseUrl: 'https://mfhuowckqcjlbwfpinow.supabase.co',
   supabaseAnonKey: 'sb_publishable_IOK5N__gY_6kgk8C3uKDDw_Ksi0RSG9',
   semServiceWorker: false,
-  vapidPublica: ''   // chave PÚBLICA dos avisos no celular (supabase/funcoes/avisos/LEIA-ME.md). A privada fica só nos segredos da função.
+  vapidPublica: 'BDBnvS15u0xKoGNjIEI6pWcy4RH0KrvwIkUFAr8ouIGLdPp6dIaE5RAVQO3wTcurSHrK-DjkOKB8fXfYK3DPPMA'   // chave PÚBLICA dos avisos no celular (supabase/funcoes/avisos/LEIA-ME.md). A privada fica só nos segredos da função.
 };
