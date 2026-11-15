@@ -1,7 +1,8 @@
 /* Guarda o sistema no aparelho para abrir e lançar registros sem internet.
    Os dados vão para o servidor pela fila do próprio app quando a conexão volta. */
-const VERSAO = 'msa-v166';
-const ARQUIVOS = ['./', 'index.html', 'css/app.css', 'js/config.js', 'js/tudo.js',
+const VERSAO = 'msa-v167';
+const N = VERSAO.replace(/\D/g, '');   // v167: a página pede css/app.css?v=N e js/tudo.js?v=N (o montar.js põe o número na index.html)
+const ARQUIVOS = ['./', 'index.html', 'css/app.css?v=' + N, 'js/config.js', 'js/tudo.js?v=' + N,
   'js/vendor/supabase-2.117.2.js', 'js/vendor/qrcode-generator-2.0.4.js', 'assets/icon-192.png', 'assets/escudo.svg', 'assets/icone.svg', 'assets/mapa-rn.json', 'manifest.webmanifest',
   'assets/fontes/lexend-latin-wght-normal.woff2', 'assets/fontes/manrope-marca-700.woff2',
   'assets/fontes/eb-garamond-latin-400-normal.woff2', 'assets/fontes/eb-garamond-latin-400-italic.woff2', 'assets/fontes/eb-garamond-latin-700-normal.woff2'];
