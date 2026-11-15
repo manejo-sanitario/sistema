@@ -77,6 +77,9 @@
 </div></header>
 <nav id="menu" aria-label="Seções do sistema"><div class="wrap" id="tabs"></div><div class="esp-sw esp-m" id="espaco-m" hidden></div><div class="wrap nav-m" id="abas-m"></div></nav>
 <main id="conteudo"><div class="wrap" id="view"></div></main>
+
+</div>
+<!-- o rodapé fica fora do #app (v164): assim passa por baixo do painel lateral na largura toda, e o painel para antes dele -->
 <footer class="pe pe-un" id="rodape" tabindex="-1"><div class="wrap">
  <div class="pe-m"><img src="assets/escudo.svg" alt="" width="36" height="40"><div><b>Manejo Sanitário</b><span>Setores de produção animal do IFRN Campus Apodi</span></div></div>
  <div class="pe-bs"><button type="button" class="b pe-b" data-ajuda><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 16v.01"/><path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"/></svg>Ajuda desta página</button><button type="button" class="b pe-b" data-relatar><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"/><path d="M12 8v3"/><path d="M12 14v.01"/></svg>Relatar problema</button></div>
@@ -85,7 +88,6 @@
  <!-- marcas oficiais (IFRN, DIGUAE, FUNCERN…): entram aqui só imagens da pasta marcas/, num fundo branco com ~32 px de altura -->
  <div class="pe-marcas" data-marcas role="group" aria-label="Marcas oficiais"></div>
 </div></footer>
-</div>
 <div class="carregando" id="carregando" role="status">
  <!-- linha de batimento passando por uma cruz: sanidade animal -->
  <svg class="cg" viewBox="0 0 120 60" width="120" height="60" aria-hidden="true" focusable="false"><path class="cg-cruz" d="M52 14h16v12h12v16H68v12H52V42H40V26h12z" opacity=".18"/><path class="cg-linha" d="M4 34h28l7-14 9 26 8-34 8 30 6-8h46"/></svg>
