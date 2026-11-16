@@ -1,24 +1,43 @@
 /* Guarda o sistema no aparelho para abrir e lançar registros sem internet.
    Os dados vão para o servidor pela fila do próprio app quando a conexão volta. */
-const VERSAO = 'msa-v184';
+const VERSAO = 'msa-v185';
 const N = VERSAO.replace(/\D/g, '');   // v167: a página pede css/app.css?v=N e js/tudo.js?v=N (o montar.js põe o número na index.html)
 const ARQUIVOS = ['./', 'index.html', 'css/app.css?v=' + N, 'js/config.js', 'js/tudo.js?v=' + N,
   'js/vendor/supabase-2.117.2.js', 'js/vendor/qrcode-generator-2.0.4.js', 'assets/icon-192.png', 'assets/escudo.svg', 'assets/icone.svg', 'assets/mapa-rn.json', 'manifest.webmanifest',
   'assets/fontes/lexend-latin-wght-normal.woff2', 'assets/fontes/manrope-marca-700.woff2',
   'assets/fontes/eb-garamond-latin-400-normal.woff2', 'assets/fontes/eb-garamond-latin-400-italic.woff2', 'assets/fontes/eb-garamond-latin-700-normal.woff2'];
 const EXTERNOS = [];   // desde a v4 as fontes ficam no próprio sistema
+/* R8 (auditoria de 16/11/2026): a página só vale como cópia se pedir os arquivos DESTA versão (css/app.css?v=N e js/tudo.js?v=N, ou
+   js/simulacao.js?v=N na simulação). Senão uma página nova (publicada enquanto este service worker ainda é o velho) ficava guardada sem
+   o tudo.js que ela pede, e sem internet o sistema abria em branco. */
+const pedeMinhaVersao = t => {
+  const s = String(t || ''), n = N;
+  return s.includes('app.css?v=' + n + '"') && (s.includes('tudo.js?v=' + n + '"') || s.includes('simulacao.js?v=' + n + '"'));
+};
 // cada versão nova baixa tudo de novo, sem passar pelo cache do navegador (senão podia guardar arquivo velho)
 self.addEventListener('install', e => e.waitUntil(caches.open(VERSAO)
-  .then(c => c.addAll(ARQUIVOS.map(u => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting())));
-self.addEventListener('activate', e => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== VERSAO).map(k => caches.delete(k)))).then(() => self.clients.claim())));
-const guardar = (req, r) => { if (r && (r.ok || r.type === 'opaque')) { const c = r.clone(); caches.open(VERSAO).then(x => x.put(req, c)); } return r; };
+  .then(c => c.addAll(ARQUIVOS.map(u => new Request(u, { cache: 'reload' }))))
+  /* a index.html baixada tem de ser desta versão: se o site ainda está sendo publicado (página velha com o service worker novo), a
+     instalação falha e tenta de novo na próxima verificação, em vez de guardar uma mistura */
+  .then(() => caches.open(VERSAO)).then(c => c.match('index.html')).then(r => r && r.text())
+  .then(t => { if (!pedeMinhaVersao(t)) throw new Error('index.html não é da versão ' + VERSAO); })
+  .then(() => self.skipWaiting())
+  .catch(x => caches.delete(VERSAO).then(() => { throw x; }))));
+/* R24: só apaga as cópias deste sistema (msa-v…) de versões anteriores; cache de outro site da mesma origem não é tocado */
+self.addEventListener('activate', e => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => /^msa-v/.test(k) && k !== VERSAO).map(k => caches.delete(k)))).then(() => self.clients.claim())));
+/* R9/R25: só resposta boa (ok) entra no cache, e falha ao gravar (aparelho cheio) não derruba a resposta; resposta de outra origem sem
+   leitura ("opaque") nunca é guardada (não há origem externa) */
+const guardar = (req, r) => { if (r && r.ok) { const c = r.clone(); caches.open(VERSAO).then(x => x.put(req, c)).catch(() => {}); } return r; };
+/* a página: só guarda se for desta versão (R8) */
+const guardarPagina = (k, r) => { if (r && r.ok) { const c = r.clone(); r.clone().text().then(t => { if (pedeMinhaVersao(t)) guardar(k, c); }).catch(() => {}); } return r; };
 // internet com prazo: se não responder em ms milissegundos, usa a cópia do aparelho (se houver)
 // chave: com que nome guardar (a página vai sempre como "index.html"/"simulacao.html", sem o endereço com ?cadastro=<código> ou ?muda=…:
 // o código do link de cadastro ficava guardado no aparelho e cada muda virava uma cópia nova; verificação completa de 14/11/2026)
 const comPrazo = (req, ms, chave) => new Promise((ok, falha) => {
   const k = chave || req;
   let feito = false; const t = setTimeout(() => caches.match(k).then(r => { if (r && !feito) { feito = true; ok(r); } }), ms);
-  fetch(req).then(r => { clearTimeout(t); guardar(k, r); if (!feito) { feito = true; ok(r); } })
+  /* R9: resposta 404/5xx não vale: usa a cópia boa; sem cópia, mostra a resposta do servidor mesmo assim */
+  fetch(req).then(r => { clearTimeout(t); if (r.ok) { guardarPagina(k, r); if (!feito) { feito = true; ok(r); } } else caches.match(k).then(c => { if (!feito) { feito = true; ok(c || r); } }); })
     .catch(() => { clearTimeout(t); caches.match(k).then(r => { if (!feito) { feito = true; r ? ok(r) : falha(); } }); });
 });
 self.addEventListener('fetch', e => {
@@ -39,7 +58,7 @@ self.addEventListener('fetch', e => {
   }
   // arquivos do sistema, biblioteca e fontes: abre do aparelho na hora; o que não estiver guardado vem da internet
   e.respondWith(caches.match(e.request).then(r => r || fetch(e.request).then(x => guardar(e.request, x)))
-    .catch(() => proprio ? caches.match(e.request) : Response.error()));
+    .catch(() => (proprio ? caches.match(e.request) : Promise.resolve()).then(r => r || Response.error())));
 });
 
 /* v137 (verificação completa de 14/11/2026): o toque no aviso abre a seção do assunto (antes, sempre a primeira tela). As etiquetas

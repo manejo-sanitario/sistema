@@ -1,0 +1,17 @@
+Avisos de terceiros - Manejo Sanitário (IFRN Campus Apodi)
+
+O sistema usa os componentes abaixo, cada um com a licença do seu autor.
+
+Bibliotecas (pasta js/vendor)
+- jsPDF 4.2.1 (js/vendor/jspdf-4.2.1.umd.min.js): licença MIT. Copyright (c) 2010-2025 James Hall e colaboradores (a lista completa e o texto da licença estão no começo do próprio arquivo).
+- qrcode-generator 2.0.4 (js/vendor/qrcode-generator-2.0.4.js): licença MIT. Copyright (c) 2009 Kazuhiko Arase, http://www.d-project.com/. "QR Code" é marca registrada da DENSO WAVE INCORPORATED.
+- supabase-js 2.117.2 (js/vendor/supabase-2.117.2.js): licença MIT, do projeto Supabase (https://github.com/supabase/supabase-js). Só é baixada quando o sistema funciona com o banco.
+
+Fontes (pasta assets/fontes)
+- Lexend, Manrope, EB Garamond e Cormorant Garamond: SIL Open Font License, versão 1.1. O texto e os direitos de cada uma estão nos arquivos LICENCA-*-OFL.txt da mesma pasta.
+
+Mapa do Rio Grande do Norte (assets/mapa-rn.json)
+- Desenho simplificado dos 167 municípios, feito por ferramentas/mapa/gerar_mapa_rn.js a partir da malha municipal do IBGE (arquivo geojs-24-mun.json, repositório tbrugz/geodata-br). A licença de uso dessa malha ainda precisa ser conferida pela coordenação.
+
+Mapas dos pontos de localização
+- Quando a pessoa toca em "Ver no mapa", o navegador abre o OpenStreetMap em outra aba. Dados (c) colaboradores do OpenStreetMap, licença ODbL (https://www.openstreetmap.org/copyright).
